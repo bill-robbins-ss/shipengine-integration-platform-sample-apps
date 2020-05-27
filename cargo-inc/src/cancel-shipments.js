@@ -1,49 +1,46 @@
-"use strict";
+const apiClient = require('./mock-api/client');
 
-const apiClient = require("../carrier/src/mock-api/client");
-
-async function cancelShipments(transaction, shipmentCancellations){
+async function cancelShipments(transaction, shipmentCancellations) {
   // STEP 1: Validation
 
 
-  // STEP 2: Create the data that the carrier's API expects
+  // STEP 2: Create the data that the carrier"s API expects
 
-  let data = {
-    operation: "void_labels",
+  const data = {
+    operation: 'void_labels',
     session_id: transaction.session.id,
-    cancelations: shipmentCancelations.map( (cancelation) => {
-      const { cancelationID, trackingNumber } = cancelation;
+    cancellations: shipmentCancellations.map((cancellation) => {
+      const { cancellationID, trackingNumber } = cancellation;
       return {
-        cancelationID: cancelationID,
-        internalReferenceID: cancelation.identifiers.internalReferenceID,
-        trackingNumber: trackingNumber
-      }
-    })
+        cancellationID,
+        internalReferenceID: cancellation.identifiers.internalReferenceID,
+        trackingNumber,
+      };
+    }),
   };
 
-  // STEP 3: Call the carrier's API
+  // STEP 3: Call the carrier"s API
   const response = await apiClient.request({ data });
 
   // STEP 4: Create the output data that ShipEngine expects
-  return await formatCancellationResponse(response.data);
-
+  return formatCancellationResponse(response.data);
 }
 
 /**
  * Formats a shipment in the way ShipEngine expects
  */
 async function formatCancellationResponse(response) {
-  return response.shipmentCancelations.map((c) => {
+  return response.cancelledShipments.map((c) => {
     return {
       cancellationID: c.id,
-      status: c.cancelationStatus,
-      confirmation: c.cancelationConfirmation,
-      code: c.cancelationCode,
-      description: c.cancelationDescription,
-      notes: c.cancelationNotes,
-      metadata: {}
-    }
-  })
+      status: c.cancellationStatus,
+      confirmationNumber: c.cancellationConfirmation,
+      code: c.cancellationCode,
+      description: c.cancellationDescription,
+      notes: c.cancellationNotes,
+      metadata: {},
+    };
+  });
 }
 
 module.exports = cancelShipments;

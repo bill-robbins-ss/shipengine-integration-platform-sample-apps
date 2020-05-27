@@ -1,0 +1,18 @@
+{
+  "extends": "shipstation/base",
+  "env": {
+    "node": true,
+    "jest": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
+  "rules": {
+    "indent": [
+      "error",
+      2
+    ],
+    "no-use-before-define": ["error", { "functions": false, "classes": true }],
+    "camelcase": "off"
+  }
+}

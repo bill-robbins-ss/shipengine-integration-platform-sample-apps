@@ -7,7 +7,8 @@ logo: logo.svg
 connect: src/connect.js
 createShipment: src/create-shipment.js
 rateShipment: src/rate-shipment.js
-
+cancelShipments: src/cancel-shipments.js
+trackShipment: src/track-shipment.js
 connectionForm: forms/connect.json
 settingsForm: forms/settings.json
 

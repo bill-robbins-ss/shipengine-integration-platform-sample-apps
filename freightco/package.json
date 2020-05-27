@@ -6,7 +6,8 @@
     "@shipengine/integration-platform-sdk": "0.0.15"
   },
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.19.2",
+    "moment": "^2.26.0"
   },
   "bundledDependencies": [
     "axios"
