@@ -8,13 +8,12 @@
   },
   "devDependencies": {
     "@shipengine/integration-platform-sdk": "0.0.16",
-    "eslint": "^6.8.0",
-    "eslint-config-shipstation": "git+https://6cbb7bdf5aa8f5ce0161358c7b46647acfc50a64:x-oauth-basic@github.com/shipstation/eslint-config-shipstation.git#v0.0.1",
-    "eslint-plugin-import": "^2.14.0"
+    "eslint": "6.8.0",
+    "eslint-plugin-import": "2.20.2"
   },
   "dependencies": {
-    "axios": "^0.19.2",
-    "moment": "^2.26.0"
+    "axios": "0.19.2",
+    "moment": "2.26.0"
   },
   "bundledDependencies": [
     "axios"
